@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+  @layer base {
+    :root {
+      --custom-bg:206 100% 97%;
+      --background: 0 0% 100%;
+      --foreground: 240 10% 3.9%;
+      --card: 0 0% 100%;
+      --card-foreground: 240 10% 3.9%;
+      --popover: 0 0% 100%;
+      --popover-foreground: 240 10% 3.9%;
+      --primary: 346.8 77.2% 49.8%;
+      --primary-foreground: 355.7 100% 97.3%;
+      --secondary: 240 4.8% 95.9%;
+      --secondary-foreground: 240 5.9% 10%;
+      --muted: 240 4.8% 95.9%;
+      --muted-foreground: 240 3.8% 46.1%;
+      --accent: 240 4.8% 95.9%;
+      --accent-foreground: 240 5.9% 10%;
+      --destructive: 0 84.2% 60.2%;
+      --destructive-foreground: 0 0% 98%;
+      --border: 240 5.9% 90%;
+      --input: 240 5.9% 90%;
+      --ring: 346.8 77.2% 49.8%;
+      --radius: 0.75rem;
+
+      --font-family: "Montserrat", sans-serif;
+
+      /*
+      change the default toast by css varibles automatically :
+      --toastify-toast-width: 320px;
+      --toastify-toast-background: #fff;
+      --toastify-toast-min-height: 64px;
+      --toastify-toast-max-height: 800px; 
+      */
+    }
+  
+  }
+
+  @layer base {
+
+    body {
+      @apply bg-background text-foreground;
+      font-family: var(--font-family) ;
+    }
+  
+    .main-container {
+      @apply px-[20px] md:px-[70px]
+    }
+  }
