@@ -1,4 +1,5 @@
 import App from "@/App";
+import ProtectedRoute from "@/components/Auth/ProtectedRoute";
 import AuthLayout from "@/layouts/AuthLayout/AuthLayout";
 import DashboardLayout from "@/layouts/DashboardLayout/DashboardLayout";
 import NotFoundLayout from "@/layouts/NotFoundLayout/NotFoundLayout";
@@ -31,7 +32,11 @@ const router = createBrowserRouter([
       },
       {
         path: "dashboard",
-        element: <DashboardLayout />,
+        element:(
+          <ProtectedRoute>
+          <DashboardLayout />
+          </ProtectedRoute>
+          ),
         children: [
           {
             index:true,

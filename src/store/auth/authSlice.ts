@@ -19,8 +19,8 @@ interface IAuthState {
 }
 
 const initialState: IAuthState = {
-  user: null,
-  token: null ,
+  user:localStorageHelper.getUser() || null,
+  token:localStorageHelper.getToken() || null ,
   loading: "idle",
   error: null,
 };
@@ -89,6 +89,9 @@ const authSlice = createSlice({
         builder.addCase(actAuthLogout.fulfilled, (state) => {
           state.loading = "succeeded";
           localStorageHelper.removeTokenAndUSer();
+          state.user=null;
+          state.token=null;
+          
           
         });
         builder.addCase(actAuthLogout.rejected, (state, action) => {
