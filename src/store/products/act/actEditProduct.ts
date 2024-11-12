@@ -1,35 +1,29 @@
-import { authEndpoints } from "@/api/endpointsAuth";
+import { dashboardEndpoints } from "@/api/endpointsDashboard";
 import { axiosPublic } from "@/utils/axios/axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { isAxiosError } from "axios";
 
 type TFormData = {
-  email: string;
-  password: string;
+  name: string;
+  price: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  image:any;
+  _method:"PUT";
 };
 
-type TResponse = {
-  user: {
-    email: string;
-    first_name: string;
-    last_name: string;
-    user_name:string;
-    profile_image_url:string;
-  };
-  token: string;
-};
 
-const actAuthLogin = createAsyncThunk(
-  "auth/actAuthLogin",
+
+const actEditProduct = createAsyncThunk(
+  "products/actEditProduct",
   async (formData: TFormData, thunk) => {
     const { rejectWithValue } = thunk;
 
     try {
-      const res = await axiosPublic.post<TResponse>(authEndpoints.login, formData,{
+      const res = await axiosPublic.post(dashboardEndpoints.items, formData,{
         headers: {
-          ...axiosPublic.defaults.headers.common,
-          'Content-Type': 'multipart/form-data',
-        },
+            ...axiosPublic.defaults.headers.common,
+            'Content-Type': 'multipart/form-data',
+          },
       });
       return res.data;
     } catch (error) {
@@ -43,4 +37,4 @@ const actAuthLogin = createAsyncThunk(
   }
 );
 
-export default actAuthLogin;
+export default actEditProduct;
