@@ -17,9 +17,9 @@
       --card-foreground: 240 10% 3.9%;
       --popover: 0 0% 100%;
       --popover-foreground: 240 10% 3.9%;
-      --primary: 346.8 77.2% 49.8%;
+      --primary: 41 100% 50%;
       --primary-foreground: 355.7 100% 97.3%;
-      --secondary: 240 4.8% 95.9%;
+      --secondary: 0 0% 42% ;
       --secondary-foreground: 240 5.9% 10%;
       --muted: 240 4.8% 95.9%;
       --muted-foreground: 240 3.8% 46.1%;
@@ -27,10 +27,8 @@
       --accent-foreground: 240 5.9% 10%;
       --destructive: 0 84.2% 60.2%;
       --destructive-foreground: 0 0% 98%;
-      --border: 240 5.9% 90%;
-      --input: 240 5.9% 90%;
-      --ring: 346.8 77.2% 49.8%;
-      --radius: 0.75rem;
+      --input: 0 0% 90%;
+      --ring: 41 100% 50%;
 
       --font-family: "Montserrat", sans-serif;
 
@@ -55,4 +53,20 @@
     .main-container {
       @apply px-[20px] md:px-[70px]
     }
+
+    .custom-gradiant {
+      background: linear-gradient(71.17deg, #FEAF00 19.35%, #F8D442 90.12%);
+    }
+
+    .custom-dashed {
+      background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='6' ry='6' stroke='%23384EB7AA' stroke-width='1' stroke-dasharray='6%2c 6' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+      border-radius: 6px;
+    }
+
+    .custom-shadow {
+      box-shadow: 8px 8px 4px 0px #00000040;
+      -webkit-box-shadow: 8px 8px 4px 0px #00000040;
+      -moz-box-shadow: 8px 8px 4px 0px #00000040;
+    }
   }
+

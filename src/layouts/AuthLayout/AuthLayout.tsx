@@ -2,10 +2,9 @@ import { Outlet } from "react-router-dom"
 
 const AuthLayout = () => {
   return (
-    <h1>
-      AuthLayout
+    <section className="custom-gradiant h-screen overflow-auto grid place-items-center	">
       <Outlet/>
-    </h1>
+    </section>
   )
 }
 
