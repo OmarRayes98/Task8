@@ -1,21 +1,9 @@
-import React, { useState } from "react";
 
-const Modal = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleModal = () => setIsOpen(!isOpen);
-  const closeModal = () => setIsOpen(false);
+const Modal = ({isOpen,handleYesOrNoDelete}:{isOpen:boolean,handleYesOrNoDelete:(shouldDelete:boolean)=>void}) => {
 
   return (
     <section>
-      {/* Toggle Button */}
-      <button
-        onClick={toggleModal}
-        className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        type="button"
-      >
-        Toggle modal
-      </button>
+
 
       {/* Modal */}
       {isOpen && (
@@ -34,14 +22,14 @@ const Modal = () => {
               </h3>
               <div className="flex justify-between gap-5 px-[20px]">
               <button
-                onClick={closeModal}
+                onClick={()=>handleYesOrNoDelete(true)}
                 type="button"
                 className="text-white bg-primary h-[61px] w-[200px] text-center text-3xl rounded"
               >
                 Yes
               </button>
               <button
-                onClick={closeModal}
+                onClick={()=>handleYesOrNoDelete(false)}
                 type="button"
                 className="text-white bg-primary h-[61px] w-[200px] text-center text-3xl rounded"
               >

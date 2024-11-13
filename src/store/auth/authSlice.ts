@@ -1,22 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import actAuthRegister from "./act/actAuthRegister";
 import actAuthLogin from "./act/actAuthLogin";
-import { TLoading } from "@/types/shared.types";
 import localStorageHelper from "@/utils/localStorage";
 import actAuthLogout from "./act/actAuthLogout";
+import { IAuthState } from "@/types/auth.types";
 
-interface IAuthState {
-  user: {
-    email: string;
-    first_name: string;
-    last_name: string;
-    user_name:string;
-    profile_image_url:string;
-  } | null;
-  token: string | null;
-  loading: TLoading;
-  error: string | null;
-}
+
 
 const initialState: IAuthState = {
   user:localStorageHelper.getUser() || null,

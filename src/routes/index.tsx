@@ -8,6 +8,7 @@ import ProdcutDetails from "@/pages/Dashboard/ProdcutDetails";
 import Products from "@/pages/Dashboard/Products";
 import SignIn from "@/pages/SignIn";
 import SignUp from "@/pages/SignUp";
+import { NuqsAdapter } from 'nuqs/adapters/react-router'
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -77,7 +78,7 @@ const router = createBrowserRouter([
 ]);
 
 const AppRouter = () => {
-  return <RouterProvider router={router} />;
+  return <NuqsAdapter><RouterProvider router={router} /></NuqsAdapter>;
 };
 
 export default AppRouter;

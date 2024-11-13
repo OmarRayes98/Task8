@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { actAuthLogin } from "@/store/auth/authSlice";
+import { IAuthState } from "@/types/auth.types";
 
 const SignIn = () => {
 
@@ -15,10 +16,12 @@ const SignIn = () => {
   const navigate = useNavigate();
 
 
+
+
   const { 
     // error, 
     loading, 
-    token } = useAppSelector((state) => state.auth);
+    token } = useAppSelector<IAuthState>((state) => state.auth);
 
   const {
     register,

@@ -14,6 +14,8 @@ interface IProductsState {
   error: string | null;
   allProducts:TProduct[];
   product:TProduct | null;
+  filterProducts:TProduct[]
+
 }
 
 const initialState: IProductsState = {
@@ -21,7 +23,8 @@ const initialState: IProductsState = {
   loading: "idle",
   error: null,
   allProducts:[],
-  product:null
+  product:null,
+  filterProducts:[]
   
 };
 
@@ -29,7 +32,14 @@ const productsSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-    
+
+    searchProducts: (state, action) => {
+      const searchTerm = action.payload;
+
+      state.filterProducts = state.allProducts.filter(item =>
+        item?.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
   },
   extraReducers: (builder) => {
             // All Prdoucts
@@ -67,15 +77,11 @@ const productsSlice = createSlice({
               });
 
             // Delete Product
-            builder.addCase(actDeleteProduct.pending, (state) => {
-                state.loading = "pending";
-                state.error = null;
-              });
-              builder.addCase(actDeleteProduct.fulfilled, (state) => {
-                state.loading = "succeeded";
+              builder.addCase(actDeleteProduct.fulfilled, () => {
+                // state.loading = "succeeded";
               });
               builder.addCase(actDeleteProduct.rejected, (state, action) => {
-                state.loading = "failed";
+                // state.loading = "failed";
                 if (typeof action.payload === "string") {
                   state.error = action.payload;
                 }
@@ -113,5 +119,5 @@ const productsSlice = createSlice({
   },
 });
 
-// export const {  } = productsSlice.actions;
+export const { searchProducts } = productsSlice.actions;
 export default productsSlice.reducer;

@@ -8,10 +8,6 @@ const signUpSchema = z
     first_name: z.string().min(1, { message: "First name is required" }),
     last_name: z.string().min(1, { message: "Last name is required" }),
     email: z.string().min(1, { message: "Email address is required" }).email(),
-    profile_image: z.instanceof(File).refine(
-      (file) => file !== null && file !== undefined,
-      { message: "Please select a file" }
-    ),
     password: z
       .string()
       .min(8, { message: "Password must be at least 8 characters longs" })

@@ -36,8 +36,8 @@ axiosPublic.interceptors.response.use(
     },
 
     (error) => {
-
-        toast.error(error.message, {
+        console.log(error,"errorerror")
+        toast.error((error?.response?.data?.message||error?.response?.data?.msg||error.message), {
             position: "bottom-right",
             autoClose: 1800,
             hideProgressBar: false,

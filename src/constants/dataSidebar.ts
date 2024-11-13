@@ -5,19 +5,19 @@ export const dataSidebar = [
     {
         id:1,
         title:'products',
-        path:"/dashboard",
+        path:"dashboard",
         icon:productsIcon,
     },
     {
         id:2,
         title:'favorites',
-        path:'/favorites',
+        path:'favorites',
         icon:bookmarkIcon
     },
     {
         id:3,
         title:'order list',
-        path:'/order-list',
+        path:'order-list',
         icon:bookmarkIcon
 
     },
