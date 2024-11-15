@@ -11,6 +11,14 @@ import { IAuthState } from "@/types/auth.types";
 
 const SignIn = () => {
 
+  const { 
+    // error, 
+    loading, 
+    token } = useAppSelector<IAuthState>((state) => state.auth);
+
+
+
+
   const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
@@ -18,10 +26,6 @@ const SignIn = () => {
 
 
 
-  const { 
-    // error, 
-    loading, 
-    token } = useAppSelector<IAuthState>((state) => state.auth);
 
   const {
     register,
@@ -31,6 +35,10 @@ const SignIn = () => {
     mode: "onSubmit",
     resolver: zodResolver(signInSchema),
   });
+
+  if (token) {
+    return <Navigate to="/dashboard" />;
+  }
 
   const submitForm: SubmitHandler<signInType> = async (data) => {
 
@@ -42,9 +50,6 @@ const SignIn = () => {
       });
   };
 
-  if (token) {
-    return <Navigate to="/dashboard" />;
-  }
 
   return (
     <section className="w-[95%] max-w-[500px] my-[40px]    px-[30.5px] py-[42px] bg-white rounded-[20px]">

@@ -44,7 +44,7 @@ const Card = ({itemObject}:{itemObject:TProduct}) => {
 
       <picture className="h-[208px] mx-auto w-[208px] rounded-2xl">
       <source srcSet={itemObject?.image_url ? itemObject?.image_url : ""}/>
-      <img  loading="lazy" className="h-[208px] mx-auto w-[208px] rounded-2xl" src={defaultImage} alt={itemObject?.name} />
+      <img  loading="lazy" className="object-cover object-center h-[208px] mx-auto w-[208px] rounded-2xl" src={defaultImage} alt={itemObject?.name} />
       </picture>
 
       <div className="absolute cursor-pointer px-[15px] rounded-2xl h-full w-full bg-[#F2EAE1B2] flex flex-col items-center justify-center -bottom-10 group-hover:bottom-0 opacity-0 group-hover:opacity-100 transition-all duration-300">

@@ -4,11 +4,12 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { isAxiosError } from "axios";
 
 type TFormData = {
+  id?:string|number;
   name: string;
   price: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   image:any;
-  _method:"PUT";
+  _method:string;
 };
 
 
@@ -18,8 +19,12 @@ const actEditProduct = createAsyncThunk(
   async (formData: TFormData, thunk) => {
     const { rejectWithValue } = thunk;
 
+    const formDataWithoutID = {...formData};
+    delete formDataWithoutID["id"];
+    // console.log(formDataWithoutID,"formData")
+
     try {
-      const res = await axiosPublic.post(dashboardEndpoints.items, formData,{
+      const res = await axiosPublic.post(dashboardEndpoints.item(formData.id!), formDataWithoutID,{
         headers: {
             ...axiosPublic.defaults.headers.common,
             'Content-Type': 'multipart/form-data',

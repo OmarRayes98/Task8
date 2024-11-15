@@ -36,7 +36,7 @@ const SignUp = () => {
 
   const submitForm: SubmitHandler<signUpType> = async (data) => {
     
-    if(!image){
+    if(!image || image==="empty"){
       setImage("empty")
       return
     }
@@ -189,7 +189,7 @@ const SignUp = () => {
                   }} className=" w-[100px] h-[100px] p-1 bg-[#F8F8FF]  rounded-lg custom-dashed
                 flex justify-center items-center overflow-hidden cursor-pointer">
                   {
-                    image
+                    (image && image !=="empty")
                     ? <img className="aspect-[2/2] object-contain	" src={image}/>
                     : 
                     <div 
@@ -217,7 +217,7 @@ const SignUp = () => {
                 }}
                 />
 
-                { (image==="empty" ) &&
+                  { (!image || image==="empty" ) &&
                   <p className="mt-2 text-sm text-red-600 dark:text-red-500">
                   not selected 
                   

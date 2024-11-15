@@ -14,6 +14,7 @@ type TResponse = {
     image_url:string;
     created_at:string;
     updated_at:string;
+    message?:string;
 };
 
 const actGetProduct = createAsyncThunk(

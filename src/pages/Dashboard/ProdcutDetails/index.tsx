@@ -1,23 +1,31 @@
 
 import imageDefault from "@/assets/images/defaultProduct.png";
 import ArrowBack from "@/components/common/ArrowBack/ArrowBack";
+import ProductDetailsSkeleton from "@/components/skeletons/ProductDetailsSkeleton";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import actGetProduct from "@/store/products/act/actGetProduct";
+import { resetDetailsProduct } from "@/store/products/productsSlice";
 import { formatDate } from "@/utils/convertformat";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 const ProdcutDetails = () => {
 
-  const {product,loading} = useAppSelector((state) => state.products);
+  const {product,loadingProduct} = useAppSelector((state) => state.products);
   const dispatch = useAppDispatch();
 
   const {id} = useParams();
 
 
   useEffect(()=>{
-    if(id)
+    if(id &&!product) // as long as > 1 mean contain data . if 1 : containe just {message}
     dispatch(actGetProduct(id));
+
+    return ()=>{
+      if(id && product && Object.keys(product)?.length > 0)
+      dispatch(resetDetailsProduct())
+    }
+
   },[dispatch,id])
 
   return (
@@ -25,12 +33,10 @@ const ProdcutDetails = () => {
       <ArrowBack path="/dashboard" />
 
       {
-        loading==="pending"?
-         <h1 className="text-3xl flex items-center justify-center my-4">
-          Loading ....
-         </h1>
+        loadingProduct==="pending"?
+         <ProductDetailsSkeleton/>
         :
-        product ?
+        (product && Object.keys(product)?.length > 1 ) ?
         <>
         <h2 className="mt-[76px] font-semibold text-4xl capitalize">
       {product?.name}
@@ -39,7 +45,7 @@ const ProdcutDetails = () => {
       <div className="mt-10 w-full max-w-[370px] max-h-[370px] mx-auto">
       <picture className="rounded-2xl h-full w-full bg-[#FEFEFE]" >
       <source  srcSet={(product?.image_url ? product?.image_url : "")} />
-      <img src={imageDefault} alt="imageDefault" className=" object-fill rounded-2xl h-[90%] w-[90%] bg-[#FEFEFE]"/>
+      <img src={imageDefault} alt="imageDefault" className=" object-cover object-center rounded-2xl  h-[370px] w-full bg-[#FEFEFE]"/>
       </picture>
       </div>
 
@@ -74,8 +80,9 @@ const ProdcutDetails = () => {
         
         </>
         :
+        (product?.message)&&
         <h1>
-          No item
+          {product?.message}
         </h1>
         
       }

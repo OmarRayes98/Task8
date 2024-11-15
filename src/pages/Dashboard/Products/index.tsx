@@ -1,7 +1,7 @@
 import searchIcon from "@/assets/images/searchIcon.png";
 import Card from "@/components/common/Card/Card";
 import Pagination from "@/components/common/Pagination/Pagination";
-import ProductSkeleton from "@/components/skeletons/ProductSkeleton/ProductSkeleton";
+import ProductSkeleton from "@/components/skeletons/ProductSkeleton";
 import useDebounce from "@/hooks/useDebounce";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import actGetAllProducts from "@/store/products/act/actGetAllProducts";
