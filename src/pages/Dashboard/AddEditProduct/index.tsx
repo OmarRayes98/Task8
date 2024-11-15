@@ -51,7 +51,7 @@ const AddEditProduct = () => {
     }
 
     return ()=>{
-      if(id && product && Object.keys(product)?.length > 0)
+      if(id && product )
       dispatch(resetDetailsProduct())
     }
 
@@ -59,11 +59,6 @@ const AddEditProduct = () => {
   },[dispatch,product?.name,product?.price,product?.image_url])
 
   
-
-  // const defaultValues: Partial<formType> = {
-  //   name:product?.name ? product.name :"",
-  //   price:product?.price ? product.price :"",
-  // }
   
 
 

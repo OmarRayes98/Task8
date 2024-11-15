@@ -22,8 +22,9 @@ const ProdcutDetails = () => {
     dispatch(actGetProduct(id));
 
     return ()=>{
-      if(id && product && Object.keys(product)?.length > 0)
+      if(id ){
       dispatch(resetDetailsProduct())
+      }
     }
 
   },[dispatch,id])
