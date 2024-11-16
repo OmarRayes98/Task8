@@ -1,5 +1,6 @@
 import App from "@/App";
-import ProtectedRoute from "@/components/Auth/ProtectedRoute";
+import ProtectedRequirdAuth from "@/components/Auth/ProtectedRequirdAuth";
+import ProtectedRequiredUnAuth from "@/components/Auth/ProtectedRequiredUnAuth";
 import AuthLayout from "@/layouts/AuthLayout/AuthLayout";
 import DashboardLayout from "@/layouts/DashboardLayout/DashboardLayout";
 import NotFoundLayout from "@/layouts/NotFoundLayout/NotFoundLayout";
@@ -19,7 +20,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <AuthLayout />,
+        element: (
+        <ProtectedRequiredUnAuth>
+          <AuthLayout />
+          </ProtectedRequiredUnAuth>
+          ),
         children: [
           {
             index:true,
@@ -34,9 +39,9 @@ const router = createBrowserRouter([
       {
         path: "dashboard",
         element:(
-          <ProtectedRoute>
+          <ProtectedRequirdAuth>
           <DashboardLayout />
-          </ProtectedRoute>
+          </ProtectedRequirdAuth>
           ),
         children: [
           {

@@ -1,4 +1,4 @@
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "@/assets/images/logo.png";
 import uploadIcon from "@/assets/images/Upload_icon.png";
 
@@ -22,8 +22,7 @@ const SignUp = () => {
 
   const { 
     // error, 
-    loading, 
-    token } = useAppSelector((state) => state.auth);
+    loading } = useAppSelector((state) => state.auth);
 
   const {
     register,
@@ -53,9 +52,6 @@ const SignUp = () => {
 
 
   
-  if (token) {
-    return <Navigate to="/dashboard" />;
-  }
 
   return (
     <section className="w-[95%] max-w-[500px] my-[40px] px-[30.5px] py-[42px] bg-white rounded-[20px]">

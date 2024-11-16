@@ -1,7 +1,7 @@
 import { useAppSelector } from "@/store/hook";
 import { Navigate } from "react-router-dom";
 
-const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
+const ProtectedRequirdAuth = ({ children }: { children: React.ReactNode }) => {
   const { token } = useAppSelector((state) => state.auth);
 
   if (!token) {
@@ -11,4 +11,4 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   return <>{children}</>;
 };
 
-export default ProtectedRoute;
+export default ProtectedRequirdAuth;

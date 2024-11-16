@@ -5,7 +5,7 @@ import { signInSchema, signInType } from "@/validations/signInSchema";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { actAuthLogin } from "@/store/auth/authSlice";
 import { IAuthState } from "@/types/auth.types";
 
@@ -14,7 +14,7 @@ const SignIn = () => {
   const { 
     // error, 
     loading, 
-    token } = useAppSelector<IAuthState>((state) => state.auth);
+    } = useAppSelector<IAuthState>((state) => state.auth);
 
 
 
@@ -36,9 +36,6 @@ const SignIn = () => {
     resolver: zodResolver(signInSchema),
   });
 
-  if (token) {
-    return <Navigate to="/dashboard" />;
-  }
 
   const submitForm: SubmitHandler<signInType> = async (data) => {
 
