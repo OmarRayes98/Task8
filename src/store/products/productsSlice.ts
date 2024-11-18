@@ -41,21 +41,6 @@ const productsSlice = createSlice({
       );
     },
 
-    findProduct: (state) => {
-      // const id = action.payload;
-      console.log(state.allProducts,"string_id")
-
-      // if(state.allProducts){
-      //   const objectProduct = state.allProducts.find(item =>item.id ===id)
-
-      //   console.log(objectProduct,"objectProduct")
-      //   if(objectProduct)
-      //     state.product=objectProduct;
-
-      // }
-      
-    },
-
     resetDetailsProduct:(state)=>{
       state.product=null;
     }
@@ -139,5 +124,5 @@ const productsSlice = createSlice({
   },
 });
 
-export const { searchProducts , resetDetailsProduct,findProduct } = productsSlice.actions;
+export const { searchProducts , resetDetailsProduct } = productsSlice.actions;
 export default productsSlice.reducer;
