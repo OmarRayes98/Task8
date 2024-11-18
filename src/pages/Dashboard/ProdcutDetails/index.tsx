@@ -4,7 +4,7 @@ import ArrowBack from "@/components/common/ArrowBack/ArrowBack";
 import ProductDetailsSkeleton from "@/components/skeletons/ProductDetailsSkeleton";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import actGetProduct from "@/store/products/act/actGetProduct";
-import { resetDetailsProduct } from "@/store/products/productsSlice";
+import {  resetDetailsProduct } from "@/store/products/productsSlice";
 import { formatDate } from "@/utils/convertformat";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -18,9 +18,15 @@ const ProdcutDetails = () => {
 
 
   useEffect(()=>{
+
+    // if(allProducts?.length >0){
+    //   dispatch(findProduct(id))
+    // }else{
+
     if(id &&!product) // as long as > 1 mean contain data . if 1 : containe just {message}
     dispatch(actGetProduct(id));
 
+    // }
     return ()=>{
       if(id ){
       dispatch(resetDetailsProduct())

@@ -3,8 +3,7 @@ import { toast } from 'react-toastify';
 import localStorageHelper from '../localStorage';
 
 
-const baseURL=import.meta.env.Vite_API_Domain;
-
+const baseURL=import.meta.env.VITE_API_Domain;
 
 
 // Create an Axios instance
