@@ -26,7 +26,6 @@ const initialState: IProductsState = {
   product:null ,
   loadingProduct:"idle",
   filterProducts:[]
-  
 };
 
 const productsSlice = createSlice({

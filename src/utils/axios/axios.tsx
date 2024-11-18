@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import localStorageHelper from '../localStorage';
 
 
-const baseURL="https://test1.focal-x.com";
+const baseURL=import.meta.env.Vite_API_Domain;
 
 
 
