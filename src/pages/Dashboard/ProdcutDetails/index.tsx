@@ -18,14 +18,18 @@ const ProdcutDetails = () => {
 
 
   useEffect(()=>{
-    if(id &&!product) // as long as > 1 mean contain data . if 1 : containe just {message}
-    dispatch(actGetProduct(id));
+    
+    if(id &&!product) {
+    const promise = dispatch(actGetProduct(id));
+    
 
     return ()=>{
       if(id ){
+        promise.abort();
       dispatch(resetDetailsProduct())
       }
     }
+  }
 
   },[dispatch,id])
 

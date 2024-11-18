@@ -35,7 +35,12 @@ axiosPublic.interceptors.response.use(
     },
 
     (error) => {
-        console.log(error,"errorerror")
+        console.log(error,"error from utils")
+
+        if(error.message==="canceled"){
+            return
+        }
+
         toast.error((error?.response?.data?.message||error?.response?.data?.msg||error.message), {
             position: "bottom-right",
             autoClose: 1800,

@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 const Products = () => {
 
   const navigate = useNavigate();
-  const {allProducts,filterProducts,loading} = useAppSelector((state) => state.products);
+  const {filterProducts,loading} = useAppSelector((state) => state.products);
   const [querySearch , setQuerySearch] = useState("");
   const debouncedQuerySearch = useDebounce(querySearch,300);
   const [currentPage, setCurrentPage] = useQueryState("page");
@@ -23,22 +23,26 @@ const Products = () => {
 
   useEffect(()=>{
 
-    if(querySearch?.trim()?.length ===0)
-    dispatch(actGetAllProducts());
+    dispatch(actGetAllProducts()).unwrap()
+    .then(() => {
+      dispatch(searchProducts(""))
+    })
 
-  },[dispatch,querySearch])
+  },[dispatch])
   
   //for search results 
   useEffect(()=>{
     if(debouncedQuerySearch?.trim()?.length >=1)
     dispatch(searchProducts(debouncedQuerySearch?.trim()))
+    else
+    dispatch(searchProducts("")) // for reset ,  get all data 
 
   },[dispatch,debouncedQuerySearch])
 
 
-  const totalPages = Math.ceil(((debouncedQuerySearch?.trim().length>=1)?filterProducts:allProducts)?.length/limit);
+  const totalPages = Math.ceil((filterProducts)?.length/limit);
 
-  const currentPageItems = ((debouncedQuerySearch?.trim().length>=1)?filterProducts:allProducts).slice((+((currentPage||currentPage===null||currentPage==='')?? 1) - 1) * limit, +((currentPage||currentPage===null||currentPage==='')?? 1) * limit);
+  const currentPageItems = filterProducts.slice((+((currentPage||currentPage===null||currentPage==='')?? 1) - 1) * limit, +((currentPage||currentPage===null||currentPage==='')?? 1) * limit);
 
   const handlePageChange = (page: number): void => {
     setCurrentPage(page.toString());
@@ -79,7 +83,7 @@ const Products = () => {
         loading==="pending"?
         <ProductSkeleton/>
         :
-        ((debouncedQuerySearch?.trim().length>=1)?filterProducts:allProducts)?.length >0 ?
+        (filterProducts)?.length >0 ?
         currentPageItems.map((item)=>(
           <Card key={item.id} itemObject={item} />
         ))
@@ -93,7 +97,7 @@ const Products = () => {
 
     <div className="mt-[80px] w-full mx-auto max-w-[450px] ">
       {
-        (loading==="pending"||((debouncedQuerySearch?.trim().length>=1)?filterProducts:allProducts)?.length ===0) ?
+        (loading==="pending"||(filterProducts)?.length ===0) ?
         null :
         <>
         <Pagination         
