@@ -2,9 +2,17 @@ import { z } from "zod";
 
 
 
+// const imageSchema = z.any()
+// // To not allow empty files
+// .refine((files) => files?.length >= 1, { message: 'Photo is required.' })
+// // To not allow files other than images
+
+
+
 
 const signUpSchema = z
   .object({
+    profile_image:z.custom<File>((val) => val instanceof File, "A image must be selected"),
     first_name: z.string().min(1, { message: "First name is required" }),
     last_name: z.string().min(1, { message: "Last name is required" }),
     email: z.string().min(1, { message: "Email address is required" }).email(),

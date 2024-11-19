@@ -4,13 +4,13 @@ import uploadIcon from "@/assets/images/Upload_icon.png";
 
 import { useRef, useState } from "react";
 import { actAuthRegister } from "@/store/auth/authSlice";
-import {  SubmitHandler, useForm } from "react-hook-form";
+import {  Controller, SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signUpSchema, signUpType } from "@/validations/signUpSchema";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 
 const SignUp = () => {
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [image ,setImage] = useState("");
 
   // const [fileName, setFileName] = useState("");
@@ -27,6 +27,8 @@ const SignUp = () => {
   const {
     register,
     handleSubmit,
+    control,
+    setValue,
     formState: { errors: formErrors },
   } = useForm<signUpType>({
     mode: "onSubmit",
@@ -35,13 +37,7 @@ const SignUp = () => {
 
   const submitForm: SubmitHandler<signUpType> = async (data) => {
     
-    if(!image || image==="empty"){
-      setImage("empty")
-      return
-    }
-
-
-    const userData = { ...data, user_name: data.first_name + '_' + data.last_name , profile_image:fileInputRef!.current!.files![0]  };
+    const userData = { ...data, user_name: data.first_name + '_' + data.last_name };
     
     dispatch(actAuthRegister(userData))
       .unwrap()
@@ -180,7 +176,7 @@ const SignUp = () => {
           >
             profile image
           </label>
-                <div onClick={()=>{
+            <div onClick={()=>{
                       fileInputRef?.current?.click();
                   }} className=" w-[100px] h-[100px] p-1 bg-[#F8F8FF]  rounded-lg custom-dashed
                 flex justify-center items-center overflow-hidden cursor-pointer">
@@ -195,30 +191,37 @@ const SignUp = () => {
                     </div>
                   }
 
-                </div>
-                <div>
-                  
-                </div>
+            </div>
 
-                <input type="file" className="hidden" 
-                accept="image/*"
-                ref={fileInputRef}
-                onChange= {(e)=>{
-                  if(e.target && e.target.files){
-                    const file = e.target.files[0];
-                    // setFileName(file.name);
-                    setImage(URL.createObjectURL(file))
-                  }
-                  
-                }}
-                />
+                <Controller
+        name="profile_image"
+        control={control}
+        render={({ field }) => (
+          <input
+            type="file"
+            className="hidden"
+            accept="image/*"
+            ref={(e) => {
+              fileInputRef.current = e;
+              field.ref(e); // Connects the ref to React Hook Form
+            }}
+            onChange={(e) => {
+              if (e.target && e.target.files) {
+                const file = e.target.files[0];
+                setImage(URL.createObjectURL(file));
+                setValue("profile_image", file, { shouldValidate: true }); // Updates the file in React Hook Form
+              }
+            }}
+          />
+        )}
+      />
 
-                  { (!image || image==="empty" ) &&
+      { (!image || image==="empty" ) &&
                   <p className="mt-2 text-sm text-red-600 dark:text-red-500">
-                  not selected 
+                  {formErrors.profile_image?.message?.toString()}
                   
                 </p>
-                }
+      }
   
         </div>
 
