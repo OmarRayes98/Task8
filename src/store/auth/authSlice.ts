@@ -1,15 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 import actAuthRegister from "./act/actAuthRegister";
 import actAuthLogin from "./act/actAuthLogin";
-import localStorageHelper from "@/utils/localStorage";
+import storageHelper from "@/utils/Storage";
 import actAuthLogout from "./act/actAuthLogout";
 import { IAuthState } from "@/types/auth.types";
 
 
 
 const initialState: IAuthState = {
-  user:localStorageHelper.getUser() || null,
-  token:localStorageHelper.getToken() || null ,
+  user:storageHelper.getUser() || null ,
+  token:storageHelper.getToken() || null ,
   loading: "idle",
   error: null,
 };
@@ -33,10 +33,10 @@ const authSlice = createSlice({
       state.loading = "succeeded";
       if( typeof action.payload=== 'object'){
         state.token = action.payload.data.token;
-        localStorageHelper.setToken(state.token);
+        storageHelper.setToken(state.token);
 
         state.user = action.payload.data.user;
-        localStorageHelper.setUser(state.user);
+        storageHelper.setUser(state.user);
 
         }
     });
@@ -56,10 +56,10 @@ const authSlice = createSlice({
       state.loading = "succeeded";
       if( typeof action.payload=== 'object'){
       state.token = action.payload.token;
-      localStorageHelper.setToken(state.token);
+      storageHelper.setToken(state.token);
 
       state.user = action.payload.user;
-      localStorageHelper.setUser(state.user);
+      storageHelper.setUser(state.user);
 
       }
     });
@@ -77,7 +77,7 @@ const authSlice = createSlice({
         });
         builder.addCase(actAuthLogout.fulfilled, (state) => {
           state.loading = "succeeded";
-          localStorageHelper.removeTokenAndUSer();
+          storageHelper.removeTokenAndUSer();
           state.user=null;
           state.token=null;
           

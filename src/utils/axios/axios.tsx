@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import localStorageHelper from '../localStorage';
+import localStorageHelper from '../Storage';
 
 
 const baseURL=import.meta.env.VITE_API_Domain;
