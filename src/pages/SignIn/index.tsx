@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Link, useNavigate } from "react-router-dom";
 import { actAuthLogin } from "@/store/auth/authSlice";
 import { IAuthState } from "@/types/auth.types";
+import Input from "@/components/common/Input/Input";
 
 const SignIn = () => {
 
@@ -58,33 +59,27 @@ const SignIn = () => {
       
       <form onSubmit={handleSubmit(submitForm)}>
   <div className="mb-6">
-    <label htmlFor="email" className="block mb-[10px] text-secondary font-medium text-sm capitalize">email</label>
-    <input 
-    type="email" 
-    id="email" 
-    className="text-xs font-normal  border border-input rounded-[4px] outline-none  focus:border-primary/90 block w-full h-[44px] px-[15px]" placeholder="Enter you email"
-    {...register("email")}
+    <Input
+    name="email"
+    id="email"
+    type="email"
+    placeholder="Enter your email"
+    label="email"
+    register={register}
+    error={formErrors.email && formErrors.email?.message}
     />
-    {formErrors.email &&
-      <p className="mt-2 text-sm text-red-600 dark:text-red-500">
-        {formErrors.email?.message}
-      </p>
-    }
   </div>
 
   <div className="mb-[30px]">
-    <label htmlFor="password" className="block mb-[10px] text-secondary font-medium text-sm capitalize">password</label>
-    <input 
-    type="password" 
-    id="password" 
-    className="text-xs font-normal  border border-input rounded-[4px] outline-none  focus:border-primary/90 block w-full h-[44px] px-[15px]" placeholder="Enter your password"
-    {...register("password")}
+  <Input
+    name="password"
+    id="password"
+    type="password"
+    placeholder="Enter your password"
+    label="password"
+    register={register}
+    error={formErrors.password && formErrors.password?.message}
     />
-    {formErrors.password &&
-      <p className="mt-2 text-sm text-red-600 dark:text-red-500">
-        {formErrors.password?.message}
-      </p>
-    }
   </div>
 
   <button 
@@ -102,7 +97,6 @@ const SignIn = () => {
   
   <p id="helper-text-explanation" className="text-center  text-secondary text-sm font-normal">Don't have an account ? {" "}
     <Link to="/signup" className="text-primary hover:underline ">Create one</Link>
-    
   </p>
 
       </form>

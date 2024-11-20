@@ -46,9 +46,7 @@ const SignUp = () => {
       });
   };
 
-
   
-
   return (
     <section className="w-[95%] max-w-[500px] my-[40px] px-[30.5px] py-[42px] bg-white rounded-[20px]">
       <img
