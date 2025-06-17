@@ -22,7 +22,7 @@ const Card = ({itemObject}:{itemObject:TProduct}) => {
 
     if(shouldDelete){
 
-    dispatch(actDeleteProduct(itemObject?.id))
+    dispatch(actDeleteProduct(itemObject?._id))
     .unwrap()
     .then(() => {
         setIsOpen(false)
@@ -52,11 +52,11 @@ const Card = ({itemObject}:{itemObject:TProduct}) => {
       </picture>
 
       <div className="absolute cursor-pointer px-[15px] rounded-2xl h-full w-full bg-[#F2EAE1B2] flex flex-col items-center justify-center -bottom-10 group-hover:bottom-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
-        <Link to={`product-details/${itemObject?.id}`} className="text-[22px] font-medium leading-[35px]">
+        <Link to={`product-details/${itemObject?._id}`} className="text-[22px] font-medium leading-[35px]">
         {itemObject?.name}
         </Link>
         <div className="flex justify-between gap-2 mt-[30px]">
-        <button onClick={()=>{navigate(`edit-product/${itemObject?.id}`)}} className="bg-primary rounded hover:bg-primary/75 text-white w-[81px] h-[34px]">Edit</button>
+        <button onClick={()=>{navigate(`edit-product/${itemObject?._id}`)}} className="bg-primary rounded hover:bg-primary/75 text-white w-[81px] h-[34px]">Edit</button>
         <button onClick={()=>handleModal(true)} className="bg-[#FE0000] hover:bg-[#fe0000be] rounded text-white w-[81px] h-[34px]">Delete</button>
 
         </div>

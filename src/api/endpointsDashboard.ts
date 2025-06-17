@@ -1,4 +1,4 @@
 export const dashboardEndpoints = {
     items:"/items",
-    item:(id: string |number ) =>`/items${id}`
+    item:(id: string |number ) =>`/items/${id}`
 }

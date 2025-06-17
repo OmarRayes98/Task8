@@ -5,7 +5,7 @@ export const dataSidebar = [
     {
         id:1,
         title:'products',
-        path:"dashboard",
+        path:"/",
         icon:productsIcon,
     },
     {

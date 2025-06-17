@@ -86,7 +86,7 @@ const Products = () => {
         :
         (filterProducts)?.length >0 ?
         currentPageItems.map((item)=>(
-          <Card key={item.id} itemObject={item} />
+          <Card key={item._id} itemObject={item} />
         ))
         :
         <h1>

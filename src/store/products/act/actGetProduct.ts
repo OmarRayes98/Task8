@@ -6,7 +6,7 @@ import axios, { isAxiosError } from "axios";
 type TResponse = {
   data: {
     product: {
-      id: string;
+    _id: string;
       name: string;
       price: string;
       user_name: string;

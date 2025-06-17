@@ -24,7 +24,7 @@ const actEditProduct = createAsyncThunk(
     // console.log(formDataWithoutID,"formData")
 
     try {
-      const res = await axiosPublic.post(dashboardEndpoints.item(formData.id!), formDataWithoutID,{
+      const res = await axiosPublic.post(dashboardEndpoints.item(formData._id!), formDataWithoutID,{
         headers: {
             ...axiosPublic.defaults.headers.common,
             'Content-Type': 'multipart/form-data',

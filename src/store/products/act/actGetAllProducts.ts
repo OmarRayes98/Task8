@@ -7,7 +7,7 @@ type TResponse = {
   data: {
     products: [
       {
-        id: string;
+        _id: string;
         name: string;
         price: string;
         user_name: string;
