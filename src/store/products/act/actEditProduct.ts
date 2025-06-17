@@ -9,7 +9,6 @@ type TFormData = {
   price: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   image:any;
-  _method:string;
 };
 
 
@@ -24,7 +23,7 @@ const actEditProduct = createAsyncThunk(
     // console.log(formDataWithoutID,"formData")
 
     try {
-      const res = await axiosPublic.post(dashboardEndpoints.item(formData._id!), formDataWithoutID,{
+      const res = await axiosPublic.put(dashboardEndpoints.item(formData.id!), formDataWithoutID,{
         headers: {
             ...axiosPublic.defaults.headers.common,
             'Content-Type': 'multipart/form-data',

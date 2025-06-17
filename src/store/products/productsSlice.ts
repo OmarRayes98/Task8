@@ -42,7 +42,7 @@ const productsSlice = createSlice({
       }
 
       state.filterProducts = state.allProducts.filter(item =>
-        item?.name.toLowerCase().includes(searchTerm.toLowerCase())
+        item?.name?.toLowerCase().includes(searchTerm.toLowerCase())
       );
     },
 

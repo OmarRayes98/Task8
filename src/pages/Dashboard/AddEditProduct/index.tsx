@@ -72,7 +72,7 @@ const AddEditProduct = () => {
     const formData = { ...data, image:fileInputRef!.current!.files![0]  };
     if(id){
 
-    const formDataEdit = { ...data,id:id,_method:"PUT", image:fileInputRef!.current!.files![0]  };
+    const formDataEdit = { ...data,id:id, image:fileInputRef!.current!.files![0]  };
       dispatch(actEditProduct(formDataEdit))
       .unwrap()
       .then(() => {
@@ -231,6 +231,7 @@ const AddEditProduct = () => {
 
           <button
           type="submit"
+          disabled={loading==="pending" ? true :false}
           className="mt-[120px] text-[30px] flex items-center justify-center font-medium mx-auto text-white  bg-primary transition duration-500 hover:bg-primary/85  focus:outline-none   rounded-[4px] text-sm w-[200px] h-[60px]  uppercase "
         >
           {
