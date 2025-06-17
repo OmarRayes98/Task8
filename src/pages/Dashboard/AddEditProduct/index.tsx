@@ -43,8 +43,8 @@ const AddEditProduct = () => {
     }else if(id && product && Object.keys(product)?.length > 1){ // lenght > 1 : the reposne not { message }
       
       reset(product);
-      if(product?.image_url){
-        setImage(product?.image_url)
+      if(product?.image){
+        setImage(import.meta.env.VITE_API_Domain+product?.image)
       }else
       setImage("")
 
@@ -56,7 +56,7 @@ const AddEditProduct = () => {
     }
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[dispatch,product?.name,product?.price,product?.image_url])
+  },[dispatch,product?.name,product?.price,product?.image])
 
   
   

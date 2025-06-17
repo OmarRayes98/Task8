@@ -3,17 +3,20 @@ import { axiosPublic } from "@/utils/axios/axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { isAxiosError } from "axios";
 
-
-
 type TResponse = {
-  
-    id: string;
-    name: string;
-    price: string;
-    user_name:string;
-    image_url:string;
-    created_at:string;
-    updated_at:string;
+  data: {
+    products: [
+      {
+        id: string;
+        name: string;
+        price: string;
+        user_name: string;
+        image: string;
+        created_at: string;
+        updated_at: string;
+      }
+    ];
+  };
 };
 
 const actGetAllProducts = createAsyncThunk(
@@ -22,15 +25,16 @@ const actGetAllProducts = createAsyncThunk(
     const { rejectWithValue } = thunk;
 
     try {
-      const res = await axiosPublic.get<TResponse[]>(dashboardEndpoints.items);
+      const res = await axiosPublic.get<TResponse>(dashboardEndpoints.items);
       return res.data;
     } catch (error) {
       if (isAxiosError(error)) {
-          return rejectWithValue(error.response?.data || error.response?.data.message || error.message);
+        return rejectWithValue(
+          error.response?.data || error.response?.data.message || error.message
+        );
       } else {
         return "An unexpected error";
       }
-
     }
   }
 );

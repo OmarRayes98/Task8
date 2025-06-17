@@ -6,7 +6,7 @@ export interface IAuthState {
       first_name: string;
       last_name: string;
       user_name:string;
-      profile_image_url:string;
+      profile_image:string;
     } | null;
     token: string | null;
     loading: TLoading;

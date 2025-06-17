@@ -21,6 +21,7 @@ const AdminSidebar = () => {
     });
   }
 
+  console.log(import.meta.env.VITE_API_Domain+user?.profile_image,"sdaa")
   return (
     <div className="flex flex-col lg:px-[38px] py-[35px] w-14 lg:w-[270px] bg-[#F2EAE1] text-black">
 
@@ -31,7 +32,7 @@ const AdminSidebar = () => {
 
       <div className="hidden lg:block mb-[70px] mx-auto">
       <picture className="rounded-full object-center h-[128px] w-[128px]" >
-      <source  srcSet={user?.profile_image_url} />
+      <source  srcSet={import.meta.env.VITE_API_Domain+user?.profile_image} />
       <img src={imageAvatar} alt="avatar error" className="rounded-full object-center leading-[128px] h-[128px] w-[128px]"/>
       </picture>
 

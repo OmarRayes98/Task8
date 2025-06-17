@@ -1,7 +1,7 @@
 
 
 export const authEndpoints = {
-    login:"/api/login",
-    register:"/api/register",
-    logout:"/api/logout"
+    login:"/auth/login",
+    register:"/auth/register",
+    logout:"/auth/logout"
 }

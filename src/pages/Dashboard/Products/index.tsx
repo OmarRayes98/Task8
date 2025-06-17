@@ -9,6 +9,7 @@ import { searchProducts } from "@/store/products/productsSlice";
 import { useQueryState } from "nuqs";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { isArray } from "util";
 
 const Products = () => {
 
@@ -42,7 +43,7 @@ const Products = () => {
 
   const totalPages = Math.ceil((filterProducts)?.length/limit);
 
-  const currentPageItems = filterProducts.slice((+((currentPage||currentPage===null||currentPage==='')?? 1) - 1) * limit, +((currentPage||currentPage===null||currentPage==='')?? 1) * limit);
+  const currentPageItems = isArray(filterProducts) ? filterProducts?.slice((+((currentPage||currentPage===null||currentPage==='')?? 1) - 1) * limit, +((currentPage||currentPage===null||currentPage==='')?? 1) * limit):[];
 
   const handlePageChange = (page: number): void => {
     setCurrentPage(page.toString());
@@ -97,7 +98,7 @@ const Products = () => {
 
     <div className="mt-[80px] w-full mx-auto max-w-[450px] ">
       {
-        (loading==="pending"||(filterProducts)?.length ===0) ?
+        (loading==="pending"||(filterProducts)?.length ===0) ||!isArray(filterProducts) ?
         null :
         <>
         <Pagination         

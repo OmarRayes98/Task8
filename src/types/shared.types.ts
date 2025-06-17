@@ -5,7 +5,7 @@ export type TProduct ={
     name: string;
     price: string;
     user_name:string;
-    image_url:string;
+    image:string;
     created_at:string;
     updated_at:string;
     message?:string;

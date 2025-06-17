@@ -47,7 +47,7 @@ const Card = ({itemObject}:{itemObject:TProduct}) => {
     <div className="relative overflow-hidden h-full w-full ">
 
       <picture className="h-[208px] mx-auto w-[208px] rounded-2xl">
-      <source srcSet={itemObject?.image_url ? itemObject?.image_url : ""}/>
+      <source srcSet={itemObject?.image ? import.meta.env.VITE_API_Domain+itemObject?.image : ""}/>
       <img  loading="lazy" className="object-cover object-center h-[208px] mx-auto w-[208px] rounded-2xl" src={defaultImage} alt={itemObject?.name} />
       </picture>
 

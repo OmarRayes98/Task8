@@ -55,10 +55,11 @@ const authSlice = createSlice({
     builder.addCase(actAuthLogin.fulfilled, (state, action) => {
       state.loading = "succeeded";
       if( typeof action.payload=== 'object'){
-      state.token = action.payload.token;
+        console.log(action.payload,"action.payload")
+      state.token = action.payload?.data.token;
       storageHelper.setToken(state.token);
 
-      state.user = action.payload.user;
+      state.user = action.payload?.data?.user;
       storageHelper.setUser(state.user);
 
       }

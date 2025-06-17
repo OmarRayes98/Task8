@@ -40,6 +40,7 @@ const SignIn = () => {
 
   const submitForm: SubmitHandler<signInType> = async (data) => {
 
+    console.log(data,"data")
     
     dispatch(actAuthLogin(data))
       .unwrap()

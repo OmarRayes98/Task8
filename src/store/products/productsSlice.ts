@@ -59,7 +59,7 @@ const productsSlice = createSlice({
               builder.addCase(actGetAllProducts.fulfilled, (state,action) => {
                 state.loading = "succeeded";
                 if(typeof action.payload ==="object")
-                state.allProducts=action.payload;
+                state.allProducts=action.payload?.data?.products;
               });
               builder.addCase(actGetAllProducts.rejected, (state, action) => {
                 state.loading = "failed";
@@ -77,7 +77,7 @@ const productsSlice = createSlice({
               builder.addCase(actGetProduct.fulfilled, (state,action) => {
                 state.loadingProduct = "succeeded";
                 if(typeof action.payload ==="object")
-                state.product=action.payload;
+                state.product=action.payload?.data?.product;
               });
               builder.addCase(actGetProduct.rejected, (state, action) => {
                 state.loadingProduct = "failed";

@@ -9,14 +9,16 @@ type TFormData = {
 };
 
 type TResponse = {
-  user: {
+  data:{
+    user: {
     email: string;
     first_name: string;
     last_name: string;
     user_name:string;
-    profile_image_url:string;
+    profile_image:string;
   };
   token: string;
+  }
 };
 
 const actAuthLogin = createAsyncThunk(
