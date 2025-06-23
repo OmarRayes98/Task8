@@ -49,7 +49,7 @@ const ProdcutDetails = () => {
 
       <div className="mt-10 w-full max-w-[370px] max-h-[370px] mx-auto">
       <picture className="rounded-2xl h-full w-full bg-[#FEFEFE]" >
-      <source  srcSet={(product?.image ? import.meta.env.VITE_API_Domain+product?.image : "")} />
+      <source  srcSet={(product?.image ? product?.image?.url : "")} />
       <img src={imageDefault} alt="imageDefault" className=" object-cover object-center rounded-2xl  h-[370px] w-full bg-[#FEFEFE]"/>
       </picture>
       </div>

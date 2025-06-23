@@ -44,7 +44,7 @@ const AddEditProduct = () => {
       
       reset(product);
       if(product?.image){
-        setImage(import.meta.env.VITE_API_Domain+product?.image)
+        setImage(product?.image.url)
       }else
       setImage("")
 
@@ -56,7 +56,7 @@ const AddEditProduct = () => {
     }
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[dispatch,product?.name,product?.price,product?.image])
+  },[dispatch,product?.name,product?.price,product?.image?.publicId])
 
   
   

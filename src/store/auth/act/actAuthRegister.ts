@@ -19,7 +19,10 @@ interface User {
   last_name: string;
   user_name: string;
   email: string;
-  profile_image: string; 
+  profile_image: {
+      url: string;
+      publicId: string;
+    };
 }
 type TFormData = {
   first_name: string;

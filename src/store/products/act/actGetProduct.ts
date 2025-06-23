@@ -6,11 +6,14 @@ import axios, { isAxiosError } from "axios";
 type TResponse = {
   data: {
     product: {
-    _id: string;
+      _id: string;
       name: string;
       price: string;
       user_name: string;
-      image: string;
+      image: {
+        url: string;
+        publicId: string;
+      };
       created_at: string;
       updated_at: string;
       message?: string;
